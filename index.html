@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TemuKampus - UNESA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="layout-wrapper">
+        
+        <!-- Bagian Kiri: Informasi & Form -->
+        <aside class="form-section">
+            <h1 class="header-title">TemuKampus.</h1>
+            <p class="subtitle">Biro pencatatan barang hilang dan ditemukan di area kampus.</p>
+            
+            <form>
+                <div class="form-group">
+                    <label>Status Laporan</label>
+                    <select>
+                        <option value="hilang">Saya kehilangan barang</option>
+                        <option value="ditemukan">Saya menemukan barang</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Nama Barang</label>
+                    <input type="text" placeholder="Cth: Kunci Motor, Dompet...">
+                </div>
+                <div class="form-group">
+                    <label>Lokasi Terakhir / Ditemukan</label>
+                    <input type="text" placeholder="Cth: Parkiran Ketintang, Gedung W1...">
+                </div>
+                <div class="form-group">
+                    <label>Nomor Kontak (WA)</label>
+                    <input type="text" placeholder="08...">
+                </div>
+                <button type="button" onclick="alert('Form berhasil dieksekusi!')">Publikasikan Laporan</button>
+            </form>
+        </aside>
+
+        <!-- Bagian Kanan: Feed Barang -->
+        <main class="feed-section">
+            <h2 class="feed-header">Laporan Terkini</h2>
+            
+            <div class="item-grid">
+                <!-- Kartu 1 -->
+                <article class="item-card">
+                    <!-- Placeholder gambar realistis dari Unsplash -->
+                    <img src="https://images.unsplash.com/photo-1563214561-1372b647f12c?auto=format&fit=crop&w=400&q=80" alt="Kunci Motor" class="item-image">
+                    <div class="item-content">
+                        <span class="badge hilang">Kehilangan</span>
+                        <h3>Kunci Motor Honda</h3>
+                        <p>Lokasi <b>Parkiran Ketintang</b></p>
+                        <p>Kontak <b>08123456789</b></p>
+                    </div>
+                </article>
+                
+                <!-- Kartu 2 -->
+                <article class="item-card">
+                    <img src="https://images.unsplash.com/photo-1597825227788-21d96bd28eb0?auto=format&fit=crop&w=400&q=80" alt="Flashdisk" class="item-image">
+                    <div class="item-content">
+                        <span class="badge ditemukan">Ditemukan</span>
+                        <h3>Flashdisk SanDisk 32GB</h3>
+                        <p>Lokasi <b>Gedung W1</b></p>
+                        <p>Kontak <b>08198765432</b></p>
+                    </div>
+                </article>
+            </div>
+        </main>
+
+    </div>
+    <body>
+        <!-- Tambahkan 2 baris ini untuk layer background JS -->
+        <div class="bg-layer bg1"></div>
+        <div class="bg-layer bg2"></div>
+    
+        <div class="layout-wrapper">
+            <!-- ... (Isi web kamu tetap sama, nggak ada yang diubah) ... -->
+        </div>
+    
+        <!-- MEMANGGIL SCRIPT DARI TRANSISI BACKGROUND-->
+        <script src="background.js"></script>
+    </body>
+</body>
+</html>
