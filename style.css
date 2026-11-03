@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 html {
     scroll-behavior: smooth;
@@ -132,26 +132,41 @@ input::placeholder {
     color: #A1887F;
 }
 
+/* Styling Tombol Normal */
 button {
     width: 100%;
-    padding: 14px;
-    background-color: #C05621; 
-    color: #fff;
-    border: 1px solid #C05621;
-    font-size: 15px;
-    font-weight: 500;
+    padding: 14px 24px;
+    background-color: #C05621; /* Oranye musim gugur */
+    color: #FFFFFF;
+    border: none;
+    border-radius: 9999px; /* Bentuk memanjang bulat halus (pill) */
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: 0.3px;
     cursor: pointer;
-    /* Transisi tombol lebih natural */
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-    margin-top: 10px;
+    margin-top: 18px;
+    outline: none;
+    
+    /* Bayangan awal */
+    box-shadow: 0 4px 14px rgba(192, 86, 33, 0.25);
+    
+    /* Transisi super halus untuk warna latar, posisi, dan bayangan */
+    transition: background-color 0.3s ease, transform 0.15s ease, box-shadow 0.3s ease;
 }
 
+/* 1. EFEK DISENTUH KURSOR (HOVER) -> Berubah menjadi Coklat Gelap Hangat */
 button:hover {
-    background-color: #3E2723; 
-    border-color: #3E2723;
-    color: #fff;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(62, 39, 35, 0.12); /* Tambahan bayangan biar kesan timbulnya dapet */
+    background-color: #3E2723; /* Coklat tua pekat */
+    transform: translateY(-2px); /* Naik sedikit */
+    box-shadow: 0 8px 20px rgba(62, 39, 35, 0.35); /* Bayangan ikut menggelap */
+}
+
+/* 2. EFEK DITEKAN / DIKLIK (ACTIVE) -> Berubah Lebih Gelap Lagi & Terasa Ditekan */
+button:active {
+    background-color: #241411; /* Espresso super gelap */
+    transform: translateY(1px) scale(0.98); /* Efek tombol amblas ke bawah */
+    box-shadow: 0 2px 6px rgba(36, 20, 17, 0.3); /* Bayangan merapat */
 }
 
 /* Feed Barang */
@@ -169,8 +184,11 @@ button:hover {
 }
 
 .item-card {
-    background: #FFFCF9; 
-    border: 1px solid #E3D7C8; 
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden; /* Memastikan sudut gambar ikut melengkung rapi */
+    border: 1px solid rgba(139, 69, 19, 0.08);
+    box-shadow: 0 4px 15px rgba(74, 46, 24, 0.04);
     display: flex;
     flex-direction: column;
     /* Transisi kartu lebih ngambang & lembut */
@@ -194,15 +212,19 @@ button:hover {
 
 .item-image {
     width: 100%;
-    height: 180px;
-    background-color: #E3D7C8;
-    object-fit: cover;
-    border-bottom: 1px solid #E3D7C8;
+    height: 200px;              /* Tinggi foto seragam */
+    object-fit: cover;          /* Gambar proporsional dan tidak gepeng */
+    object-position: center;     /* Fokus gambar tetap di tengah */
+    display: block;
+    background-color: #F5EBE1;  /* Warna placeholder hangat saat memuat */
+    border-radius: 16px 16px 0 0; /* Lengkungan sudut hanya di bagian atas */
 }
 
 .item-content {
-    padding: 20px;
-    position: relative;
+    padding: 16px 18px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .item-card h3 {
@@ -247,3 +269,552 @@ button:hover {
     background: transparent;
 }
 
+/* ========================================================
+   OPTIMASI TAMPILAN KHUSUS PONSEL / MOBILE (Maksimal 767px)
+   ======================================================== */
+   @media (max-width: 767px) {
+    /* 1. Pengaturan Jarak Wadah Utama */
+    .layout-wrapper {
+        padding: 24px 16px 40px;
+        gap: 36px;
+    }
+
+    /* 2. Beri latar belakang kartu transparan lembut pada form
+          agar tulisan tidak bertabrakan dengan background foto */
+    .form-section {
+        position: static; /* Hilangkan sticky di HP agar tidak mengambang aneh */
+        background: rgba(254, 252, 249, 0.88);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: 24px 20px;
+        border-radius: 20px;
+        border: 1px solid rgba(227, 215, 200, 0.6);
+        box-shadow: 0 8px 24px rgba(62, 39, 35, 0.06);
+    }
+
+    /* 3. Penyesuaian Ukuran Header & Subtitle */
+    .header-title {
+        font-size: 28px;
+    }
+
+    .subtitle {
+        font-size: 14px;
+        margin-bottom: 24px;
+    }
+
+    /* 4. Cegah auto-zoom di iOS dan perbesar area sentuh jari */
+    input, select {
+        font-size: 16px !important; /* Standar minimal agar iPhone tidak zoom in */
+        padding: 14px 4px;
+    }
+
+    /* 5. Optimasi Tombol di Layar Sentuh */
+    button {
+        padding: 16px 20px;
+        font-size: 15px;
+        /* Tambahkan efek tap highlight transparan agar rapi di Android/iOS */
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* 6. Grid Kartu Barang Menjadi 1 Kolom Penuh */
+    .item-grid {
+        grid-template-columns: 1fr; /* 1 kartu memanjang penuh per baris */
+        gap: 20px;
+    }
+
+    /* 7. Proporsi Gambar Kartu */
+    .item-image {
+        height: 200px; /* Sedikit lebih proporsional untuk rasio layar HP */
+    }
+
+    .item-content {
+        padding: 16px 18px;
+    }
+
+    .item-card h3 {
+        font-size: 18px;
+    }
+
+    .item-card p {
+        font-size: 13px;
+    }
+}
+
+/* Styling Bar Pencarian & Filter */
+.search-filter-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.search-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(139, 69, 19, 0.25);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: #4A2E18;
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: #B85028;
+    background: #ffffff;
+}
+
+.filter-select {
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(139, 69, 19, 0.25);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: #4A2E18;
+    cursor: pointer;
+}
+
+.search-btn {
+    padding: 10px 18px;
+    background-color: #B85028;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.search-btn:hover {
+    background-color: #963F1D;
+}
+
+.reset-link {
+    color: #8D6E63;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-left: 4px;
+}
+
+/* Badge & Tampilan Selesai */
+.badge.selesai {
+    background-color: #4CAF50;
+    color: #ffffff;
+    border: none;
+}
+
+.item-resolved {
+    opacity: 0.85;
+    background: #fbf9f5;
+}
+
+/* Tombol Aksi Kartu */
+.card-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(139, 69, 19, 0.2);
+}
+
+.btn-action {
+    flex: 1;
+    padding: 6px 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.btn-resolve {
+    background-color: rgba(76, 175, 80, 0.15);
+    color: #2E7D32;
+    border-color: #81C784;
+}
+
+.btn-resolve:hover {
+    background-color: #2E7D32;
+    color: #ffffff;
+}
+
+.btn-delete {
+    background-color: rgba(211, 47, 47, 0.1);
+    color: #C62828;
+    border-color: #EF9A9A;
+}
+
+.btn-delete:hover {
+    background-color: #C62828;
+    color: #ffffff;
+}
+
+/* Progress Bar Paling Atas */
+#top-progress-bar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3.5px;
+    background: linear-gradient(90deg, #D97706, #B85028, #E65100);
+    box-shadow: 0 0 10px rgba(184, 80, 40, 0.7);
+    z-index: 999999;
+    transition: width 0.4s ease-out;
+}
+
+/* Teks Waktu Pelaporan */
+.timestamp-text {
+    font-size: 0.78rem;
+    color: #8D6E63;
+    margin: -4px 0 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Tombol WhatsApp Interaktif */
+.wa-action-box {
+    margin: 10px 0 6px 0;
+}
+
+.btn-wa {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    width: 100%;
+    padding: 8px 12px;
+    background-color: #25D366;
+    color: #ffffff !important;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(37, 211, 102, 0.25);
+    transition: transform 0.15s ease, background-color 0.2s ease;
+}
+
+.btn-wa:hover {
+    background-color: #1EBE5D;
+    transform: translateY(-1px);
+}
+
+/* Efek Kaca Berbayang (Glassmorphism) Panel Kiri */
+.form-section {
+    background: rgba(255, 255, 255, 0.50); /* Putih transparan */
+    backdrop-filter: blur(14px);           /* Efek blur kaca */
+    -webkit-backdrop-filter: blur(14px);   /* Kompatibilitas Safari/Webkit */
+    padding: 36px 30px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.7); /* Garis kilau tepi kaca */
+    box-shadow: 0 14px 35px rgba(74, 46, 24, 0.08); /* Bayangan lembut */
+    position: relative;
+    z-index: 2;
+}
+
+.form-section .header-title {
+    font-family: 'Playfair Display', 'Lora', serif;
+    font-size: 2.2rem;
+    color: #4A2E18;
+    margin-bottom: 6px;
+    letter-spacing: -0.5px;
+}
+
+.form-section .subtitle {
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    font-size: 0.95rem;
+    color: #6D4C41;
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+/* Styling Input Field & Select Dropdown */
+.form-group {
+    margin-bottom: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    color: #5D4037;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+}
+
+.form-group input[type="text"],
+.form-group select {
+    width: 100%;
+    padding: 10px 12px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(139, 69, 19, 0.25);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    color: #4A2E18;
+    transition: all 0.2s ease;
+}
+
+.form-group input[type="text"]::placeholder {
+    color: #A1887F;
+    font-size: 0.9rem;
+}
+
+.form-group input[type="text"]:focus,
+.form-group select:focus {
+    outline: none;
+    background: #ffffff;
+    border-color: #B85028;
+    box-shadow: 0 0 0 3px rgba(184, 80, 40, 0.15);
+}
+
+/* Custom Upload File Box */
+.custom-file-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 16px 12px;
+    background: rgba(255, 255, 255, 0.55);
+    border: 2px dashed rgba(184, 80, 40, 0.35);
+    border-radius: 10px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s ease;
+}
+
+.custom-file-upload:hover {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: #B85028;
+    transform: translateY(-1px);
+}
+
+.custom-file-upload .upload-icon {
+    font-size: 1.4rem;
+}
+
+#file-chosen-text {
+    font-size: 0.85rem;
+    color: #8D6E63;
+    word-break: break-all;
+}
+
+/* Sembunyikan Input File Asli Bawaan Browser */
+.custom-file-upload input[type="file"] {
+    display: none;
+}
+
+/* Container Statistik Mini */
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 12px;
+    padding: 12px 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(139, 69, 19, 0.1);
+    box-shadow: 0 4px 12px rgba(74, 46, 24, 0.04);
+}
+
+.stat-num {
+    font-size: 1.6rem;
+    font-weight: 800;
+    line-height: 1.1;
+    font-family: inherit;
+}
+
+.stat-label {
+    font-size: 0.78rem;
+    color: #6D4C41;
+    font-weight: 600;
+    margin-top: 4px;
+    text-align: center;
+}
+
+/* Aksen Warna per Status */
+.stat-hilang .stat-num {
+    color: #B85028; /* Merah Terracotta */
+}
+
+.stat-ditemukan .stat-num {
+    color: #D97706; /* Oranye Kuning */
+}
+
+.stat-selesai .stat-num {
+    color: #2E7D32; /* Hijau Selesai */
+}
+
+/* Efek Animasi Daun Gugur */
+.leaf-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; /* Tombol dan form tetap bisa diklik bebas */
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.falling-leaf {
+    position: absolute;
+    top: -40px;
+    user-select: none;
+    cursor: default;
+    opacity: 0.8;
+    animation-name: fallDown;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes fallDown {
+    0% {
+        top: -40px;
+        transform: translateX(0) rotate(0deg);
+        opacity: 0.9;
+    }
+    50% {
+        transform: translateX(60px) rotate(180deg);
+        opacity: 0.8;
+    }
+    100% {
+        top: 105vh;
+        transform: translateX(-40px) rotate(360deg);
+        opacity: 0.2;
+    }
+}
+
+/* ==========================================
+   ROCKSTAR INTRO SPLASH SCREEN
+   ========================================== */
+   .rockstar-splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #1A120B;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000000;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    cursor: pointer;
+}
+
+.rockstar-splash.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+.splash-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    animation: zoomPop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Kotak Logo ala Rockstar "R*" */
+.r-logo-box {
+    position: relative;
+    width: 90px;
+    height: 90px;
+    background: #B85028; /* Terracotta Autumn */
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 25px rgba(184, 80, 40, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.r-letter {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: #ffffff;
+    line-height: 1;
+    font-family: Arial, sans-serif;
+    transform: translateY(-2px);
+}
+
+.r-star {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    font-size: 1.2rem;
+    transform: rotate(15deg);
+}
+
+/* Teks Branding Bawah */
+.splash-title {
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: 900;
+    letter-spacing: 4px;
+    margin-top: 18px;
+    margin-bottom: 2px;
+}
+
+.splash-sub {
+    color: #A1887F;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    font-weight: 600;
+}
+
+/* Garis Loading Cepat */
+.splash-loader {
+    width: 120px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    margin-top: 20px;
+    overflow: hidden;
+}
+
+.splash-loader-bar {
+    width: 100%;
+    height: 100%;
+    background: #D97706;
+    animation: loadSlide 0.8s ease-in-out infinite;
+}
+
+/* Animasi Muncul & Loading */
+@keyframes zoomPop {
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes loadSlide {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Kelas saat splash screen selesai */
+.rockstar-splash.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
