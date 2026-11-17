@@ -5,7 +5,7 @@ Merupakan sebuah platfrom Lost and Found System, yang di buat dengan tujuan
 untuk memudahkan para user dalam melaporkan kehilangan & penemuan barang di sekitar area lingkungan kampus.
 
 🇺🇸
-A web-based Lost and Found platform designed to help students and campus communities report, search, and recover lost or found items in the Universitas Negeri Surabaya (UNESA) campus environment.
+A web-based Lost and Found platform designed to help students and campus communities report, search, and recover lost or found items in the campus environment.
 
 ## Overview
 
