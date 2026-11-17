@@ -1,7 +1,7 @@
 # TemuKampus
 
 Merupakan sebuah platfrom Lost and Found System yang di buat dengan tujuan
-untuk membantu para user untuk melaporkan kehilangan & penemuan barang.
+untuk mempermudah para user dalam melaporkan kehilangan & penemuan barang, di sekitar lingkungan kampus.
 
 ## Features
 - Pelaporan barang hilang
